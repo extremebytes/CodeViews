@@ -13,12 +13,37 @@ import UIKit
 class SquareView: UIView {
 
    override func drawRect(rect: CGRect) {
-      let strokeWidth:CGFloat = 4
+      drawSquare(self.bounds)
+   }
+   
+   
+   /**
+   Draws a square in the current graphics context.
+   
+   :param: squareRect The rectangular dimensions of the square.
+   */
+   func drawSquare(squareRect: CGRect) {
       let context = UIGraphicsGetCurrentContext()
+      let strokeWidth:CGFloat = 4
       CGContextSetLineWidth(context, strokeWidth)
       CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
       CGContextSetFillColorWithColor(context, UIColor.magentaColor().CGColor)
-      CGContextAddRect(context, CGRect(x: strokeWidth/2, y: strokeWidth/2, width: self.bounds.width - strokeWidth, height: self.bounds.height - strokeWidth))
+      CGContextAddRect(context, CGRect(x: strokeWidth/2, y: strokeWidth/2, width: squareRect.width - strokeWidth, height: squareRect.height - strokeWidth))
       CGContextDrawPath(context, kCGPathFillStroke)
+   }
+   
+   
+   /**
+   Returns a Quick Look object for display during debugging.
+   
+   :returns: The Quick Look object.
+   */
+   func debugQuickLookObject() -> AnyObject? {
+      let imageRect = CGRect(x: 0, y: 0, width: 200, height: 200)
+      UIGraphicsBeginImageContext(imageRect.size)
+      drawSquare(imageRect)
+      let squareImage:UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+      return squareImage ?? description
    }
 }

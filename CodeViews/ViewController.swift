@@ -72,24 +72,15 @@ class ViewController: UIViewController {
    func circleImage() -> UIImage? {
       let imageSize = CGSize(width: 500, height: 500)
       let strokeWidth = CGFloat(20)
-      
-      // Create circle path
-      let center = CGPoint(x: imageSize.width/2, y: imageSize.height/2)
-      let radius = CGFloat(imageSize.width/2 - strokeWidth/2)
-      let startAngle = CGFloat(0)
-      let endAngle = CGFloat(2 * M_PI)
-      let circlePath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-      
-      // Create circle image
+      let circlePath = UIBezierPath(ovalInRect: CGRect(x: strokeWidth/2, y: strokeWidth/2, width: imageSize.width - strokeWidth, height: imageSize.height - strokeWidth))
       UIGraphicsBeginImageContext(CGSize(width: imageSize.width, height: imageSize.height))
       circlePath.lineWidth = strokeWidth
       UIColor.blackColor().setStroke()
       circlePath.stroke()
       UIColor.cyanColor().setFill()
       circlePath.fill()
-      let circleImage = UIGraphicsGetImageFromCurrentImageContext()
+      let circleImage:UIImage? = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      
       return circleImage
    }
 
