@@ -20,7 +20,6 @@ class ViewController: UIViewController {
    /// Colored view width; 50 for iPhone 6 Plus and larger sizes, otherwise 0.
    var coloredViewWidth: Int {
       let screenWidth = Int(UIScreen.mainScreen().bounds.width)
-      println("Screen width = \(screenWidth)")
       let minimumLabelWidth = 301
       let spacingWidth = 8
       let colorViewWidth = 50
