@@ -20,7 +20,7 @@ class SquareView: UIView {
    /**
    Draws a square in the current graphics context.
    
-   :param: squareRect The rectangular dimensions of the square.
+   - parameter squareRect: The rectangular dimensions of the square.
    */
    func drawSquare(squareRect: CGRect) {
       let context = UIGraphicsGetCurrentContext()
@@ -29,14 +29,14 @@ class SquareView: UIView {
       CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
       CGContextSetFillColorWithColor(context, UIColor.magentaColor().CGColor)
       CGContextAddRect(context, CGRect(x: strokeWidth/2, y: strokeWidth/2, width: squareRect.width - strokeWidth, height: squareRect.height - strokeWidth))
-      CGContextDrawPath(context, kCGPathFillStroke)
+      CGContextDrawPath(context, CGPathDrawingMode.FillStroke)
    }
    
    
    /**
    Returns a Quick Look object for display during debugging.
    
-   :returns: The Quick Look object.
+   - returns: The Quick Look object.
    */
    func debugQuickLookObject() -> AnyObject? {
       let imageRect = CGRect(x: 0, y: 0, width: 200, height: 200)

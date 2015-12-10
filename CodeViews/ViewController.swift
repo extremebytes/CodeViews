@@ -53,11 +53,11 @@ class ViewController: UIViewController {
    /**
    Adds the specified view to the top level view hierarchy.
    
-   :param: viewName   The textual name of the view for use in visual formatting.
-   :param: viewObject The actual name of the view object.
+   - parameter viewName:   The textual name of the view for use in visual formatting.
+   - parameter viewObject: The actual name of the view object.
    */
-   func addViewToHierarchy(#viewName: String, viewObject: UIView) {
-      viewObject.setTranslatesAutoresizingMaskIntoConstraints(false)
+   func addViewToHierarchy(viewName viewName: String, viewObject: UIView) {
+      viewObject.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview(viewObject)
       viewsDictionary[viewName] = viewObject
    }
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
    /**
    Creates and returns a circle image.
    
-   :returns: An optional UIImage of a circle.
+   - returns: An optional UIImage of a circle.
    */
    func circleImage() -> UIImage? {
       let imageSize = CGSize(width: 500, height: 500)
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
       
       // Finalize layout constraints
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-50-[redLabel]-[yellowLabel]-[greenLabel]-[bufferView][circleImageView]-20-|",
-         options: nil, metrics: nil, views: viewsDictionary))
+         options: [], metrics: nil, views: viewsDictionary))
    }
    
    
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[greenView(coloredViewWidth)]-[greenLabel]-|",
          options: .AlignAllCenterY, metrics: ["coloredViewWidth":coloredViewWidth], views: viewsDictionary))
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[greenView(==greenLabel)]",
-         options: nil, metrics: nil, views: viewsDictionary))
+         options: [], metrics: nil, views: viewsDictionary))
    }
 
    
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[redView(coloredViewWidth)]-[redLabel]-|",
          options: .AlignAllCenterY, metrics: ["coloredViewWidth":coloredViewWidth], views: viewsDictionary))
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[redView(==redLabel)]",
-         options: nil, metrics: nil, views: viewsDictionary))
+         options: [], metrics: nil, views: viewsDictionary))
    }
    
    
@@ -202,7 +202,7 @@ class ViewController: UIViewController {
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[yellowView(coloredViewWidth)]-[yellowLabel]-|",
          options: .AlignAllCenterY, metrics: ["coloredViewWidth":coloredViewWidth], views: viewsDictionary))
       view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[yellowView(==yellowLabel)]",
-         options: nil, metrics: nil, views: viewsDictionary))
+         options: [], metrics: nil, views: viewsDictionary))
    }
    
    
@@ -220,9 +220,9 @@ class ViewController: UIViewController {
    Removes all subviews and layout constraints from the top level view hierarchy.
    */
    func unloadSubviews() {
-      view.removeConstraints(view.constraints())
+      view.removeConstraints(view.constraints)
       for subview in view.subviews {
-         view.removeFromSuperview()
+         subview.removeFromSuperview()
       }
    }
 }
